@@ -10,7 +10,12 @@ import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
 
 import javax.swing.*;
+/**
 
+ * Esta clase gestiona departamentos, da de alta, borra, modifica y consulta
+ * @author: Mario De Castro Esteban
+ * @version: 25/02/2023
+ */
 public class VentanaDepart extends JFrame implements ActionListener  {
 	String existedepart = "DEPARTAMENTO EXISTE.";	
 private static final String NOEXISTEDEPART = "DEPARTAMENTO NO EXISTE.";
@@ -36,7 +41,10 @@ JButton ver=new JButton("Ver por consola.");
 JButton fin=new JButton("CERRAR");
 Color c; //para poner colores
  // WHITE,LIGHTGRAY,GRAY,DARKGRAY,BLUE,BLACK,RED,MAGENTA,PINK,ORANGE,CYAN,GREEN,YELLOW
-
+/**
+ * Constructor de clase
+ * @param f instancia grafica para gestionar los departamentos
+ */
 public VentanaDepart(JFrame f )
 { 	
     setTitle("GESTI�N DE DEPARTAMENTOS.");
@@ -93,7 +101,10 @@ public VentanaDepart(JFrame f )
 	modif.addActionListener(this);
 	ver.addActionListener(this);
 }
-
+/**
+ * Realiza una accion sobre un departamento 
+ * @param e acciones a realizar
+ */
 public void actionPerformed(ActionEvent e) 
 {   int dep, confirm;
 	
@@ -164,7 +175,9 @@ public void actionPerformed(ActionEvent e)
         loc.setText(" ");
 	}
 }
-
+/**
+ * modifica el departamento
+ */
 private void modifdepart() throws IOException {
 	int dep;
 	int confirm;
@@ -187,7 +200,9 @@ private void modifdepart() throws IOException {
 	         }
 	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");
 }
-
+/**
+ * Borra un departamento
+ */
 private void borradepart() throws IOException {
 	int dep;
 	int confirm;
@@ -212,7 +227,9 @@ private void borradepart() throws IOException {
 	         }
 	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");
 }
-
+/**
+ * consulta un departamento
+ */
 private void consuldepart() throws IOException {
 	int dep;
 	dep=Integer.parseInt(num.getText());
@@ -226,7 +243,9 @@ private void consuldepart() throws IOException {
 	         }
 	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");
 }
-
+/**
+ * Da de alta un departamento
+ */
 private void altadepart() throws IOException {
 	int dep;
 	dep=Integer.parseInt(num.getText());
@@ -240,7 +259,9 @@ private void altadepart() throws IOException {
 	         }
 	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");
 }
-
+/**
+ * Saca por consola información sobre un departamento
+ */
 public  void verporconsola() throws IOException {     
   String  nom="",loc=""; int dep=0; long pos;
   File fichero = new File("AleatorioDep.dat");
@@ -275,7 +296,11 @@ public  void verporconsola() throws IOException {
   else  //esto s�lo sale la primera vez
 		System.out.println(" ---------FICHERO VACI�IOOOO --------------------");
 }// fin verporconsola
-
+/**
+ * Consultar un departamento en especifico
+ * @param dep ID del departamento en concreto
+ * @return true si ha sido leido o false si ha dado error al leerlo o no existe
+ */
 boolean consultar(int dep) throws IOException 
 {	 
 	long pos; int depa;
@@ -295,6 +320,10 @@ boolean consultar(int dep) throws IOException
 	    return false;
 	  } 
 } // fin consultar
+/**
+ * Visualiza un departamento concreto
+ * @param dep ID del departamento en concreto
+ */
 void visualiza(int dep) 
 {	    String nom="",loca=""; 
 		long pos; int depa;
@@ -326,6 +355,10 @@ void visualiza(int dep)
 			e1.printStackTrace();
 		}	
 } // fin visualiza
+/**
+ * Borra un departamento
+ * @param dep ID del departamento en concreto
+ */
 void borrar(int dep) 
 {	    // con borrar ponemos a 0 el dep que se quiere borrar
 	    // y a blancos el nombre y la localidad
@@ -354,6 +387,10 @@ void borrar(int dep)
 			e1.printStackTrace();
 		}	
 } // fin borrar
+/**
+ * Modifica un departamento
+ * @param dep ID del departamento en concreto
+ */
 void modificar(int dep) 
 {	    // con modificar asignamos los datos tecleados
 	    String nom="",loca="";  StringBuffer buffer = null;
@@ -381,6 +418,12 @@ void modificar(int dep)
 			e1.printStackTrace();
 		}	
 } // fin modificar
+/**
+ * Graba un nuevo departamento en el fichero 
+ * @param dep ID del departamento en concreto
+ * @param nom Nombre del departamento
+ * @param loc localizacion del departamento
+ */
 void grabar(int dep, String nom, String loc) 
 {	 
 		long pos; StringBuffer buffer = null;
